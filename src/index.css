@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply bg-slate-500;
+}
+
+.input-todoList {
+    @apply flex-1 text-white py-4 px-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500;
+}
+
+.todo-li {
+    @apply flex items-center justify-between py-4 px-2 mt-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500 cursor-pointer hover:scale-105;
+}
+
+.btn-edit {
+    @apply p-2 bg-blue-500 rounded hover:bg-blue-700 hover:ease-in-out duration-500
+}
+
+.btn-excluir {
+    @apply p-2 bg-red-500 rounded hover:bg-red-700 hover:ease-in-out duration-500
+}
