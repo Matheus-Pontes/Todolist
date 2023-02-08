@@ -4,7 +4,7 @@
         - Editar
         - Excluir
         - Marcar como completa
-
-- Tecnologias 
+        
+## Tecnologias 
     - VueJS 3 + Vite 
     - TailwindCss
