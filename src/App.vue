@@ -19,10 +19,11 @@
 </template>
 
 <script>
+    import ButtonDropDown from './components/ButtonDropDown.vue';
     import TodoList from './components/TodoList.vue';  
     
     export default {
-        components: { TodoList },
+        components: { TodoList, ButtonDropDown },
         data() {
             return {
                 descricaoInput: "",
