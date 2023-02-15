@@ -11,7 +11,7 @@
 }
 
 .todo-li {
-    @apply flex items-center justify-between py-4 px-2 mt-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500 cursor-pointer hover:scale-105;
+    @apply flex items-center justify-between py-4 px-2 mt-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500 cursor-pointer ;
 }
 
 .todo-disable {

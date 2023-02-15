@@ -23,7 +23,7 @@
     import TodoList from './components/TodoList.vue';  
     
     export default {
-        components: { TodoList, ButtonDropDown },
+        components: { TodoList },
         data() {
             return {
                 descricaoInput: "",
