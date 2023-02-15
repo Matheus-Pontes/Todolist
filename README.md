@@ -4,6 +4,7 @@
         - Editar
         - Excluir
         - Marcar como completa
+        - Cancelar edição
 
 ## Tecnologias 
 - VueJS 3 + Vite 
