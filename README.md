@@ -1,10 +1,13 @@
 # Todolist
-- Projeto To Do List 
-    - Onde você pode incluir sua tarefa e fazer algumas ações
-        - Editar
-        - Excluir
-        - Marcar como completa
-        - Cancelar edição
+
+- [Acesso ao projeto](https://todolist-gray-seven.vercel.app/)
+
+## Projeto
+- Onde você pode incluir sua tarefa e fazer algumas ações
+    - Editar
+    - Excluir
+    - Marcar como completa
+    - Cancelar edição
 
 ## Tecnologias 
 - VueJS 3 + Vite 
