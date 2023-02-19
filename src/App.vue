@@ -5,7 +5,7 @@
                 <input type="text" 
                        id="txtToDo" 
                        placeholder="Adicione uma tarefa"
-                       v-model="descricaoInput" 
+                       v-model="tituloInput" 
                        class="input-todoList" 
                        @keyup.enter="adicionarNaLista()"
                 />
@@ -31,23 +31,24 @@
         components: { TodoList },
         data() {
             return {
-                descricaoInput: "",
+                tituloInput: "",
                 lista: []
             };
         },
         methods: {
             adicionarNaLista() {
-                if (!this.descricaoInput)
-                    alert("Digite algo por favor !!! ");
+                if (!this.tituloInput)
+                    alert("OPA OPA !!! NÃO É ASSIM, ME FALE SUA TAREFA !!! ");
                 else {
                     this.lista.push({ 
                         id: (this.lista.length - 1) + 1, 
-                        Descricao: this.descricaoInput,
+                        titulo: this.tituloInput,
+                        descricao: "",
                         abrirEdicao: false,
                         concluido: 0,
-                        Lembrete: ""
+                        lembrete: ""
                     });
-                    this.descricaoInput = "";
+                    this.tituloInput = "";
                 }
             }
         },

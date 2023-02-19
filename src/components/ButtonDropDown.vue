@@ -16,14 +16,78 @@
             </v-list>
         </v-menu>
     </div>
+
+    <!-- modal de edição -->
+    <template>
+        <v-row justify="center">
+            <v-dialog v-model="dialog" scrollable>
+                <v-card theme="dark">
+
+                    <v-card-title>{{ todo.titulo }}</v-card-title>
+                    <v-divider></v-divider>
+
+                    <v-card-text style="height: 300px;"> 
+                        
+                        <div class="flex items-start flex-col">
+                            <div class="pb-4">
+                                <p for="txtLembrete" class="pb-1">Lembrete</p>
+                                <input type="datetime-local" 
+                                       name="txtLembrete" 
+                                       id="txtLembrete" 
+                                       class="outline-none focus:border-2 border-sky-800 rounded-lg p-2" 
+                                       v-model="todo.lembrete"
+                                />                                
+                            </div>
+
+                            <div class="w-full pb-4">
+                                <p for="txtTitulo" class="pb-1">Título</p>
+                                <input name="txtTitulo" 
+                                       id="txtDesctxtTituloricao" 
+                                       type="text" 
+                                       class="w-full p-2 outline-none focus:border-2 border-sky-800 rounded-lg"
+                                       v-model="novoTitulo"
+                                />
+                            </div>
+
+                            <div class="w-full">
+                                <p for="txtDescricao" class="pb-1">Descrição</p>
+                                <textarea name="txtDescricao" 
+                                          id="txtDescricao" 
+                                          cols="30" 
+                                          rows="5" 
+                                          class="resize-y w-full p-2 outline-none focus:border-2 border-sky-800 rounded-lg"
+                                          v-model="todo.descricao"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions class="flex items-center justify-end gap-2">
+                        <button class="text-white btn-edit"  @click="salvarEdicao()">
+                            Salvar
+                        </button>
+                        <button class="text-white btn-excluir"  @click="dialog = false">
+                            Fechar
+                        </button>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-row>
+    </template>
+
 </template>
 
 <script>
 export default {
     name: 'ButtonDropDown',
-    props: ['todo'],
+    props: ['todo', 'listaTodo'],
     data() {
         return {
+            dialogm1: '',
+            dialog: false,
+            novoTitulo: this.todo.titulo, 
             listaAcoes: [
                 {
                     id: 1,
@@ -54,8 +118,8 @@ export default {
     },
     methods: {
         excluirToDo(id) {
-            let index = this.listaTodo.findIndex(i => i.id == id);
-            this.listaTodo.splice(index, 1);
+            let index = this.$props.listaTodo.findIndex(i => i.id == id);
+            this.$props.listaTodo.splice(index, 1);
         },
         atualizarValor(todo) {
             todo.abrirEdicao = false;
@@ -88,7 +152,7 @@ export default {
 
             switch (idButton) {
                 case 1:
-                    todo.abrirEdicao = true;
+                    this.dialog = true;
                     break;
                 case 2:
                     todo.concluido = true;
@@ -106,6 +170,14 @@ export default {
                     todo.concluido = false;
                     break;
             }
+        },
+        salvarEdicao() {
+
+            if (!this.novoTitulo)
+                alert('Preencha o campo obrigatório !!!');
+            else
+                this.todo.titulo = this.novoTitulo;
+            this.dialog = false;
         }
     },
     computed: {
