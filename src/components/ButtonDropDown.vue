@@ -46,6 +46,7 @@
                                        type="text" 
                                        class="w-full p-2 outline-none focus:border-2 border-sky-800 rounded-lg"
                                        v-model="novoTitulo"
+                                       :class="{ 'border-red-500': !novoTitulo } "
                                 />
                             </div>
 
@@ -178,6 +179,7 @@ export default {
             else
                 this.todo.titulo = this.novoTitulo;
             this.dialog = false;
+
         }
     },
     computed: {
