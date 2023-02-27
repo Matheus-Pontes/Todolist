@@ -23,10 +23,10 @@
 - [x] Após adicionar, mudar o componente criado (ButtonAction) por um existente do vuetify [exemplo para seguir](https://vuetifyjs.com/en/components/menus/)
 - [x] Subir alteração
 
-- [ ] Adicionar modal para colocar mais detalhes sobre a tarefa
+- [x] Adicionar modal para colocar mais detalhes sobre a tarefa
     - Utilizar a própria ação de "Editar" para abrir esse modal 
     - [Referência](https://next.vuetifyjs.com/en/components/dialogs/#overflowed)
-        - [ ] Campo: Para Adicionar/Editar título - Campo obrigatório
-        - [ ] Campo: Para Adionar/Editar conteúdo
-        - [ ] Campo: Para Adicionar/Editar lembrete data e hora
-        - [ ] Botões: Salvar e Fechar 
+        - [x] Campo: Para Adicionar/Editar título - Campo obrigatório
+        - [x] Campo: Para Adionar/Editar conteúdo
+        - [x] Campo: Para Adicionar/Editar lembrete data e hora
+        - [x] Botões: Salvar e Fechar 
