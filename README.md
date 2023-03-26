@@ -30,3 +30,4 @@
         - [x] Campo: Para Adionar/Editar conteúdo
         - [x] Campo: Para Adicionar/Editar lembrete data e hora
         - [x] Botões: Salvar e Fechar 
+- [ ] Implementar localstorage para salvar os dados e assim fazer o processo de notificação para o usuário 
