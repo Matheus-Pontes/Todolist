@@ -7,23 +7,22 @@
                 </v-btn>
             </template>
 
-            <v-list>
-                <v-list-item v-for="item in listaAcoes" :key="item.id" :value="item.id" @click="clickAction(item.id, todo)"
-                    active-color="primary">
-                    <v-list-item-title v-text="item.descricao">
-                    </v-list-item-title>
-                </v-list-item>
-            </v-list>
+            <ul class="bg-zinc-700 py-2 rounded-lg">
+                <li  v-for="item in listaAcoes" :key="item.id" class="p-2 hover:bg-gray-100 hover:text-zinc-900" @click="clickAction(item.id, todo)">
+                    {{ item.descricao }}
+                </li>
+            </ul>
+
         </v-menu>
     </div>
 
     <!-- modal de edição -->
     <template>
         <v-row justify="center">
-            <v-dialog v-model="dialog" scrollable>
-                <v-card theme="dark">
+            <v-dialog v-model="dialog" scrollable class="max-w-2xl">
+                <v-card theme="dark" class="bg-zinc-800 ">
 
-                    <v-card-title>{{ todo.titulo }}</v-card-title>
+                    <v-card-title class="">{{ todo.titulo }}</v-card-title>
                     <v-divider></v-divider>
 
                     <v-card-text style="height: 300px;"> 
@@ -34,8 +33,8 @@
                                 <input type="datetime-local" 
                                        name="txtLembrete" 
                                        id="txtLembrete" 
-                                       class="outline-none focus:border-2 border-sky-800 rounded-lg p-2" 
-                                       v-model="todo.lembrete"
+                                       class="modal-element-default" 
+                                       v-model="novoLembrete"
                                 />                                
                             </div>
 
@@ -44,9 +43,9 @@
                                 <input name="txtTitulo" 
                                        id="txtDesctxtTituloricao" 
                                        type="text" 
-                                       class="w-full p-2 outline-none focus:border-2 border-sky-800 rounded-lg"
+                                       class="modal-element-default"
                                        v-model="novoTitulo"
-                                       :class="{ 'border-red-500': !novoTitulo } "
+                                       :class="{ 'border-red-500': !novoTitulo }"
                                 />
                             </div>
 
@@ -56,8 +55,8 @@
                                           id="txtDescricao" 
                                           cols="30" 
                                           rows="5" 
-                                          class="resize-y w-full p-2 outline-none focus:border-2 border-sky-800 rounded-lg"
-                                          v-model="todo.descricao"
+                                          class="modal-element-default resize-y"
+                                          v-model="novaDescricao"
                                 ></textarea>
                             </div>
                         </div>
@@ -178,8 +177,11 @@ export default {
                 alert('Preencha o campo obrigatório !!!');
             else
                 this.todo.titulo = this.novoTitulo;
+        
+            this.todo.lembrete = this.novoLembrete;          
+            this.todo.descricao = this.novaDescricao;
+            
             this.dialog = false;
-
         }
     },
     computed: {

@@ -25,3 +25,7 @@
 .btn-concluir {
     @apply p-2 bg-green-600 rounded hover:bg-green-800 hover:ease-in-out duration-500
 }
+
+.modal-element-default {
+    @apply outline-none w-full p-2 rounded-lg border bg-zinc-900 focus:border-green-500;   
+}
