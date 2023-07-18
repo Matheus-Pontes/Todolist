@@ -25,14 +25,21 @@
 import TodoList from './components/TodoList.vue';
 
 export default {
+    components: { TodoList },
+    data() {
+        return {
+            tituloInput: "",
+            lista: []
+        };
+    },
     mounted() {
 
         let permission = Notification.permission;
 
         if (permission === "granted") {
-            showNotification();
+            showNotification("Valeu pode deixar eu te notificar kk", "Vamos lembrar você sobre alguma tarefa pendente...");
         } else if (permission === "default") {
-            requestAndShowPermission();
+            requestAndShowPermission("Valeu pode deixar eu te notificar kk", "Vamos lembrar você sobre alguma tarefa pendente...");
         } else {
             alert("Use normal alert");
         }
@@ -45,29 +52,16 @@ export default {
             });
         }
 
-        function showNotification() {
-            //  if(document.visibilityState === "visible") {
-            //      return;
-            //  }
-            let title = "Valeu pode deixar eu te notificar kk";
-            
-            let body = "Vamos lembrar você sobre alguma tarefa pendente...";
-
-            let notification = new Notification(title, { body });
+        function showNotification(titulo, descricao) {
+            let notification = new Notification(titulo, { descricao });
 
             notification.onclick = () => {
                 notification.close();
                 window.parent.focus();
             }
-
         }
-    },
-    components: { TodoList },
-    data() {
-        return {
-            tituloInput: "",
-            lista: []
-        };
+
+        // this.validarSeMandaNotification();
     },
     methods: {
         adicionarNaLista() {
@@ -85,23 +79,17 @@ export default {
                 this.tituloInput = "";
             }
         },
-        showNotification(titulo, descricao) {
-            let notification = new Notification(titulo, { descricao });
-
-            notification.onclick = () => {
-                notification.close();
-                window.parent.focus();
-            }
-        },
-        async validarSeMandaNotification() {
-
-            this.lista.forEach(todo => {
-                let date = new Date();
-                if(todo.lembrete == date.getDate()) {
-                    this.showNotification(todo.titulo, todo.descricao);
+        validarSeMandaNotification() {
+            setInterval(function() {
+                if(this.lista.length > 0) {
+                    this.lista.forEach(todo => {
+                        let date = new Date();
+                        if(todo.lembrete == date.getDate()) {
+                            showNotification(todo.titulo, todo.descricao);
+                        }
+                    });
                 }
-                        
-            });
+            }, 5000);
         }
     },
     
