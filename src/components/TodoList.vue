@@ -39,7 +39,8 @@ export default {
     },
     methods: {
         formatDate(value) {
-            return moment(value).format('DD/MM/YYYY HH:mm');
+            let dataLembrete = moment(value).format('DD/MM/YYYY HH:mm');
+            return dataLembrete ?? "";
         }
     },
     components: { ButtonDropDown }

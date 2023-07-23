@@ -11,7 +11,7 @@
             <div class="mt-8">
                 <div class="flex items-center justify-between gap-4 px-5">
                     <span class="text-xl flex-1 text-left px-1">Título</span>
-                    <button type="button" class="btn-excluir " @click="lista = []">Excluir todos</button>
+                    <button type="button" class="btn-excluir " @click="excluirTodasAsTarefas()">Excluir todos</button>
                 </div>
 
                 <TodoList :listaTodo="lista" />
@@ -103,6 +103,11 @@ export default {
                     });
                 }
             }, 5000);
+        },
+        excluirTodasAsTarefas() {
+            this.lista = [];
+
+            localStorage.setItem("listaDeTarefas", JSON.stringify(this.lista));
         }
     },
     

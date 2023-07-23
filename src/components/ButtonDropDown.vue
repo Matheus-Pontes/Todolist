@@ -120,6 +120,13 @@ export default {
         excluirToDo(id) {
             let index = this.$props.listaTodo.findIndex(i => i.id == id);
             this.$props.listaTodo.splice(index, 1);
+
+            let listaDeTarefasArmazenadas = JSON.parse(localStorage.getItem("listaDeTarefas"));
+
+            let indexLocalStorage = listaDeTarefasArmazenadas.findIndex(i => i.id == id);
+            listaDeTarefasArmazenadas.splice(indexLocalStorage, 1);
+
+            localStorage.setItem("listaDeTarefas", JSON.stringify(listaDeTarefasArmazenadas));
         },
         atualizarValor(todo) {
             todo.abrirEdicao = false;
@@ -156,6 +163,7 @@ export default {
                     break;
                 case 2:
                     todo.concluido = true;
+                    this.atualizarTodo(todo);
                     break;
                 case 3:
                     this.excluirToDo(todo.id);
@@ -168,6 +176,7 @@ export default {
                     break;
                 case 6:
                     todo.concluido = false;
+                    this.atualizarTodo(todo);
                     break;
             }
         },
@@ -178,21 +187,22 @@ export default {
             else {
                 this.dialog = false;
     
-                let listaDeTarefasArmazenadas = JSON.parse(localStorage.getItem("listaDeTarefas"));
-                console.log(this.todo);
-                listaDeTarefasArmazenadas.forEach(i => {
-                    if(i.id == this.todo.id) {
-                        i.titulo = this.todo.titulo ?? "";
-                        i.lembrete = this.todo.lembrete ?? 0;
-                        i.descricao = this.todo.descricao ?? "";
-    
-                    }
-                });
-    
-                console.log(listaDeTarefasArmazenadas);
-    
-                localStorage.setItem("listaDeTarefas", JSON.stringify(listaDeTarefasArmazenadas));
+                this.atualizarTodo(this.todo);
             }
+        },
+        atualizarTodo(todo) {
+            let listaDeTarefasArmazenadas = JSON.parse(localStorage.getItem("listaDeTarefas"));
+                
+            listaDeTarefasArmazenadas.forEach(i => {
+                if(i.id == todo.id) {
+                    i.titulo = todo.titulo ?? "";
+                    i.lembrete = todo.lembrete ?? 0;
+                    i.descricao = todo.descricao ?? "";
+                    i.concluido = todo.concluido;
+                }
+            });
+
+            localStorage.setItem("listaDeTarefas", JSON.stringify(listaDeTarefasArmazenadas));
         }
     },
     computed: {
