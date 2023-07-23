@@ -34,7 +34,7 @@
                                        name="txtLembrete" 
                                        id="txtLembrete" 
                                        class="modal-element-default" 
-                                       v-model="novoLembrete"
+                                       v-model="todo.lembrete"
                                 />                                
                             </div>
 
@@ -44,8 +44,8 @@
                                        id="txtDesctxtTituloricao" 
                                        type="text" 
                                        class="modal-element-default"
-                                       v-model="novoTitulo"
-                                       :class="{ 'border-red-500': !novoTitulo }"
+                                       v-model="todo.titulo"
+                                       :class="{ 'border-red-500': !todo.titulo }"
                                 />
                             </div>
 
@@ -56,7 +56,7 @@
                                           cols="30" 
                                           rows="5" 
                                           class="modal-element-default resize-y"
-                                          v-model="novaDescricao"
+                                          v-model="todo.descricao"
                                 ></textarea>
                             </div>
                         </div>
@@ -173,15 +173,26 @@ export default {
         },
         salvarEdicao() {
 
-            if (!this.novoTitulo)
+            if (!this.todo.titulo)
                 alert('Preencha o campo obrigatório !!!');
-            else
-                this.todo.titulo = this.novoTitulo;
-        
-            this.todo.lembrete = this.novoLembrete;          
-            this.todo.descricao = this.novaDescricao;
-            
-            this.dialog = false;
+            else {
+                this.dialog = false;
+    
+                let listaDeTarefasArmazenadas = JSON.parse(localStorage.getItem("listaDeTarefas"));
+                console.log(this.todo);
+                listaDeTarefasArmazenadas.forEach(i => {
+                    if(i.id == this.todo.id) {
+                        i.titulo = this.todo.titulo ?? "";
+                        i.lembrete = this.todo.lembrete ?? 0;
+                        i.descricao = this.todo.descricao ?? "";
+    
+                    }
+                });
+    
+                console.log(listaDeTarefasArmazenadas);
+    
+                localStorage.setItem("listaDeTarefas", JSON.stringify(listaDeTarefasArmazenadas));
+            }
         }
     },
     computed: {

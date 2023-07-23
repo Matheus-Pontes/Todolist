@@ -33,6 +33,8 @@ export default {
         };
     },
     mounted() {
+        
+        this.verificarSeTemListaArmazenada();
 
         let permission = Notification.permission;
 
@@ -64,6 +66,12 @@ export default {
         // this.validarSeMandaNotification();
     },
     methods: {
+        verificarSeTemListaArmazenada() {
+            let listaTodo = localStorage.hasOwnProperty('listaDeTarefas');
+
+            if(listaTodo) 
+                this.lista = JSON.parse(localStorage.getItem('listaDeTarefas'));
+        },
         adicionarNaLista() {
             if (!this.tituloInput)
                 alert("OPA OPA !!! NÃO É ASSIM, ME FALE SUA TAREFA !!! ");
@@ -71,13 +79,18 @@ export default {
                 this.lista.push({
                     id: (this.lista.length - 1) + 1,
                     titulo: this.tituloInput,
-                    descricao: "",
+                    descricao: " ",
                     abrirEdicao: false,
                     concluido: 0,
-                    lembrete: ""
+                    lembrete: " "
                 });
                 this.tituloInput = "";
+
+                this.adicionarNoStorage();
             }
+        },
+        adicionarNoStorage() {
+            localStorage.setItem('listaDeTarefas', JSON.stringify(this.lista));
         },
         validarSeMandaNotification() {
             setInterval(function() {
