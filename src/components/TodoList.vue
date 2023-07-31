@@ -6,8 +6,8 @@
                     {{ todo.titulo}}
 
                     <div class="flex items-center gap-2">
-                        <span class="text-[10px] text-white opacity-50 text-left m-0" v-if="todo.lembrete">Lembrete: {{ formatDate(todo.lembrete) }}</span>
-                        <div class="text-[10px] text-white opacity-50 text-left flex items-center" v-if="todo.descricao" :title=textoAlertaDescricao>
+                        <span class="text-[10px] text-white opacity-50 text-left m-0" v-if="todo.lembrete != ' '">Lembrete: {{ formatDate(todo.lembrete) }}</span>
+                        <div class="text-[10px] text-white opacity-50 text-left flex items-center" v-if="todo.descricao != ' '" :title=textoAlertaDescricao>
                             <span class="text-ellipsis whitespace-nowrap overflow-hidden w-12 lg:w-96">{{ todo.descricao }}</span>
                             <figure class="w-4 h-4">
                                 <img src="https://img.icons8.com/color/48/null/info-popup.png"/>
@@ -39,8 +39,10 @@ export default {
     },
     methods: {
         formatDate(value) {
-            let dataLembrete = moment(value).format('DD/MM/YYYY HH:mm');
-            return dataLembrete ?? "";
+            if (value != " ") {
+                let dataLembrete = moment(value).format('DD/MM/YYYY HH:mm');
+                return dataLembrete ?? "";
+            }
         }
     },
     components: { ButtonDropDown }

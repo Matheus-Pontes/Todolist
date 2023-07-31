@@ -41,7 +41,7 @@ export default {
         if (permission === "granted") {
             showNotification("Valeu pode deixar eu te notificar kk", "Vamos lembrar você sobre alguma tarefa pendente...");
         } else if (permission === "default") {
-            requestAndShowPermission("Valeu pode deixar eu te notificar kk", "Vamos lembrar você sobre alguma tarefa pendente...");
+            requestAndShowPermission();
         } else {
             alert("Use normal alert");
         }
@@ -49,7 +49,7 @@ export default {
         function requestAndShowPermission() {
             Notification.requestPermission(function (permission) {
                 if (permission === "granted") {
-                    showNotification();
+                    showNotification("Valeu pode deixar eu te notificar kk", "Vamos lembrar você sobre alguma tarefa pendente...");
                 }
             });
         }
@@ -62,8 +62,6 @@ export default {
                 window.parent.focus();
             }
         }
-
-        // this.validarSeMandaNotification();
     },
     methods: {
         verificarSeTemListaArmazenada() {
