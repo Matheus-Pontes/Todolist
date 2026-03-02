@@ -3,6 +3,7 @@
 - [Acesso ao projeto](https://todolist-gray-seven.vercel.app/)
 
 ## Projeto
+- [LAYOUT](https://www.figma.com/design/NQ5L1dEnoa6mj2DduoAlRA/Todolist---Vuejs?node-id=0-1&p=f&t=DVgNFbjp5AzPxpmi-0)
 - Onde você pode incluir sua tarefa e fazer algumas ações
     - Editar
     - Excluir
