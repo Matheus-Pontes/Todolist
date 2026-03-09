@@ -3,6 +3,7 @@
 - [Acesso ao projeto](https://todolist-gray-seven.vercel.app/)
 
 ## Projeto
+- [LAYOUT](https://www.figma.com/design/NQ5L1dEnoa6mj2DduoAlRA/Todolist---Vuejs?node-id=0-1&p=f&t=DVgNFbjp5AzPxpmi-0)
 - Onde você pode incluir sua tarefa e fazer algumas ações
     - Editar
     - Excluir
@@ -31,4 +32,5 @@
         - [x] Campo: Para Adicionar/Editar lembrete data e hora
         - [x] Botões: Salvar e Fechar 
 - [ ] Implementar localstorage para salvar os dados e assim fazer o processo de notificação para o usuário
-- [ ] Trocar texto de botões por icones.
+- [x] Trocar texto de botões por icones.
+- [ ] Instalar geranciamento de estado Pinia.
