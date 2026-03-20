@@ -6,32 +6,9 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-.btn {
-    @apply bg-slate-500;
-}
-
-.input-todoList {
-    @apply flex-1 text-white py-4 px-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500;
-}
-
-.todo-li {
-    @apply flex items-center justify-between py-4 px-2 mt-4 border-2 rounded border-zinc-500 bg-zinc-900 focus:border-green-500 outline-none hover:border-green-500 hover:ease-in-out duration-500 cursor-pointer ;
-}
-
-.btn-edit {
-    @apply p-2 bg-blue-500 rounded hover:bg-blue-700 hover:ease-in-out duration-500
-}
-
-.btn-excluir {
-    @apply p-2 bg-red-500 rounded hover:bg-red-700 hover:ease-in-out duration-500
-}
-
-.btn-concluir {
-    @apply p-2 bg-green-600 rounded hover:bg-green-800 hover:ease-in-out duration-500
-}
-
-.modal-element-default {
-    @apply outline-none w-full p-2 rounded-lg border bg-zinc-900 focus:border-green-500;   
+.scrollbar-custom {
+    @apply cursor-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-zinc-900 [&::-webkit-scrollbar-track]:rounded [&::-webkit-scrollbar-thumb]:bg-green-600 [&::-webkit-scrollbar-thumb]:rounded;
 }
