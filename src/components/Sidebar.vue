@@ -10,13 +10,23 @@
             </h2>
     
             <div class="flex-1 overflow-y-auto border-t mt-2 space-y-2">
-                <div class="p-2 text-white bg-zinc-700 cursor-pointer hover:bg-zinc-800 transition-all" 
-                     v-for="todo in todoActives" :key="todo.id" @click="todoStore.getTodo(todo.id)">
+                <div class="p-2 text-white bg-zinc-600 cursor-pointer relative hover:bg-zinc-700 transition-all rounded" 
+                     v-for="todo in todoActives" :key="todo.id">
                   
                      <div class="flex items-center justify-between">
-                      <span> {{ todo.titulo }}</span>
-                      <span>ººº</span>
-                     </div>
+                      <span @click="todoStore.getTodo(todo.id)" class="w-full">{{ todo.titulo }}</span>
+                      <button class="rounded hover:bg-zinc-800" @click="todo.openActions=!todo.openActions">
+                        <PhDotsThree size="24"/>
+                      </button>  
+                    </div>
+                    
+                    <div v-if="todo.openActions" class="absolute top-9 right-2 z-10 p-2 flex flex-col gap-2 bg-zinc-700 rounded shadow-sm shadow-zinc-600">
+                      <button class="w-full" @click="todoStore.completeTodo(todo.id)">
+                          <PhCheckCircle size="24" class="text-green-400 transition-all delay-100 hover:text-green-500" /></button>
+                      <button class="w-full" @click="todoStore.excludeTodo(todo.id)">
+                        <PhTrash size="24" class="text-red-400 transition-all delay-100  hover:text-red-500" />
+                      </button>
+                    </div>
                   
                 </div>
 
@@ -30,15 +40,11 @@
                 Concluídas
             </h2>
     
-            <div class="flex-1 overflow-y-auto border-t mt-2">  
-                <div class="p-2 text-white bg-zinc-700 cursor-pointer hover:bg-zinc-800 transition-all" 
+            <div class="flex-1 overflow-y-auto border-t mt-2 space-y-2">  
+                <div class="p-2 text-white bg-zinc-700 cursor-pointer hover:bg-zinc-800 transition-all opacity-50 rounded" 
                      v-for="todo in todoCompleted" :key="todo.id">
                   
-                     <div class="flex items-center justify-between">
-                      <span> {{ todo.titulo }}</span>
-                      <span>ººº</span>
-                     </div>
-                  
+                      <span class="line-through"> {{ todo.titulo }}</span>
                 </div>
             </div>
     
@@ -51,14 +57,14 @@
 // Não precisa de um export para exportar o component se setou o setup ja resolve para chamar o component   
 -->
 <script setup>
-import { PhCheckCircle, PhCircle } from '@phosphor-icons/vue';
+import { PhCheckCircle, PhCircle, PhDotsThree, PhTrash } from '@phosphor-icons/vue';
 import { menuStore } from '../store/useMenuStore';
-import { computed, onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useTodoStore } from '../store/useTodoStore';
 
+let abrirActions = ref(false);
 const menu = menuStore();
 const todoStore = useTodoStore();
-
 
 todoStore.loadTodos();
 

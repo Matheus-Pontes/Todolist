@@ -18,18 +18,28 @@ export const useTodoStore = defineStore('todo', {
                     createdDate: Date.now(),
                     isComplete: false,
                     titulo: this.titulo,
-                    descricao: this.descricao
+                    descricao: this.descricao,
+                    openActions: false
                 }
             );
             this.setDescricao('');
             this.setTitulo('');
             this.saveTodos();
         },
-        completeTodo() {
-            const todo = this.todos.find(t => t.id === this.editingId);
+        completeTodo(id) {
+            let todo;
+
+            if (!id)
+                todo = this.todos.find(t => t.id === this.editingId);
+            else if (id) 
+                todo = this.todos.find(t => t.id === id);
+            
             if (todo) {
                 todo.isComplete = !todo.isComplete;
                 this.saveTodos();
+                this.editingId = null;
+                this.setTitulo('');
+                this.setDescricao('');
             }
         },
         excludeTodo(id) {
