@@ -42,6 +42,4 @@ import Sidebar from './Sidebar.vue';
 
 const todo = useTodoStore();
 
-console.log(todo);
-
 </script>

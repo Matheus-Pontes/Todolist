@@ -11,9 +11,9 @@
             </button>
         </div>
 
-        <div class="flex items-center justify-end flex-1 pr-4">
+        <div class="flex items-center justify-end flex-1">  
             <div class="p-3 text-white rounded-full border-2 border-green-600 flex gap-2 items-center bg-zinc-900">
-                <button @click="todo.completeTodo">
+                <button v-if="!ocultarActions" @click="todo.completeTodo">
                     <PhCheckCircle size="24" class="transition-all delay-100 hover:text-green-500"/>
                 </button>
 
@@ -25,7 +25,7 @@
                     <PhFloppyDisk size="24" class="transition-all delay-100 hover:text-blue-500" />
                 </button>
 
-                <button>
+                <button v-if="!ocultarActions">
                     <PhTrash size="24" class="transition-all delay-100 hover:text-red-500" />
                 </button>
             </div>
@@ -38,9 +38,28 @@
 import { PhCheckCircle, PhCircle,  PhFloppyDisk, PhTrash, PhX } from '@phosphor-icons/vue';
 import { menuStore } from '../store/useMenuStore';
 import { useTodoStore } from '../store/useTodoStore';
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 const menu = menuStore();
 const todo = useTodoStore();
 
+let ocultarActions = ref(false);
+
+const handleResize = () => {
+    ocultarActions.value = false;
+    if (window.innerWidth < 768) {
+        console.log('mudar');
+        
+        ocultarActions.value = true;
+    }
+}
+
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize)
+});
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+});
 
 </script>
