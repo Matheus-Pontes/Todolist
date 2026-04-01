@@ -33,4 +33,7 @@
         - [x] Botões: Salvar e Fechar 
 - [ ] Implementar localstorage para salvar os dados e assim fazer o processo de notificação para o usuário
 - [x] Trocar texto de botões por icones.
-- [ ] Instalar geranciamento de estado Pinia.
+- [x] Instalar geranciamento de estado Pinia.
+
+- [] Pensar numa forma de trocar os botçoes de ações de lugar
+- [] CRIAR CRONOMETRO POMODORO

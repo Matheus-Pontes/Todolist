@@ -11,20 +11,22 @@
             <div class="w-full space-y-4">
                 <input  
                     id="txtTitulo"
-                    v-model="titulo"
+                    v-model="todo.titulo"
+                    @input="atualizarTitulo"
                     type="text"
                     placeholder="TÍTULO"
                     maxlength="200"
                     class="w-full max-w-2xl bg-transparent text-white text-4xl focus:outline-none"
                 />
                 
-                <span v-if="titulo.length >= 50" class="block text-blue-600 text-sm">Pra que um título tão grande kkk</span>
+                <span v-if="todo.titulo?.length >= 50" class="block text-blue-600 text-sm">Pra que um título tão grande kkk</span>
             </div>
 
             <div class="h-full">
                 <textarea
                     id="txtDescricao"
-                    v-model="descricao"
+                    v-model="todo.descricao"
+                    @input="atualizarDescricao"
                     placeholder="Descrição..."
                     class="w-full h-full bg-transparent text-white text-2xl resize-none scrollbar-custom focus:outline-none"
                 ></textarea>
@@ -35,13 +37,11 @@
 </template>
 
 <script setup>
+import { useTodoStore } from '../store/useTodoStore';
 import Sidebar from './Sidebar.vue';
 
-import { ref } from 'vue';
+const todo = useTodoStore();
 
-let titulo = ref('');
-let descricao = ref('');
-
-
+console.log(todo);
 
 </script>

@@ -9,8 +9,20 @@
                 Ativas
             </h2>
     
-            <div class="flex-1 overflow-y-auto border-t mt-2">
-                <div class="p-2"></div>
+            <div class="flex-1 overflow-y-auto border-t mt-2 space-y-2">
+                <div class="p-2 text-white bg-zinc-700 cursor-pointer hover:bg-zinc-800 transition-all" 
+                     v-for="todo in todoActives" :key="todo.id" @click="todoStore.getTodo(todo.id)">
+                  
+                     <div class="flex items-center justify-between">
+                      <span> {{ todo.titulo }}</span>
+                      <span>ººº</span>
+                     </div>
+                  
+                </div>
+
+                <div v-if="todoStore.todos.length == 0" class="h-full text-center text-zinc-300 text-lg grid place-content-center">
+                  As tarefas ficam ativas por <span class="font-bold text-red-400 text-xl animate-pulse">24hrs</span>
+                </div>
             </div>
     
             <h2 class="flex items-center gap-2 text-lg text-white mt-4">
@@ -19,7 +31,15 @@
             </h2>
     
             <div class="flex-1 overflow-y-auto border-t mt-2">  
-                <div class="p-2"></div>
+                <div class="p-2 text-white bg-zinc-700 cursor-pointer hover:bg-zinc-800 transition-all" 
+                     v-for="todo in todoCompleted" :key="todo.id">
+                  
+                     <div class="flex items-center justify-between">
+                      <span> {{ todo.titulo }}</span>
+                      <span>ººº</span>
+                     </div>
+                  
+                </div>
             </div>
     
         </aside>
@@ -33,10 +53,14 @@
 <script setup>
 import { PhCheckCircle, PhCircle } from '@phosphor-icons/vue';
 import { menuStore } from '../store/useMenuStore';
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
+import { useTodoStore } from '../store/useTodoStore';
 
 const menu = menuStore();
+const todoStore = useTodoStore();
 
+
+todoStore.loadTodos();
 
 const handleResize = () => {
   if (window.innerWidth < 768) {
@@ -51,6 +75,16 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
 });
+
+const todoActives = computed(() => {
+  return todoStore.todos.filter(i => !i.isComplete);
+});
+
+const todoCompleted = computed(() => {
+  return todoStore.todos.filter(i => i.isComplete);
+});
+
+
 
 </script>
 

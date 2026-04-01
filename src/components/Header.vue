@@ -13,11 +13,15 @@
 
         <div class="flex items-center justify-end flex-1 pr-4">
             <div class="p-3 text-white rounded-full border-2 border-green-600 flex gap-2 items-center bg-zinc-900">
-                <button>
+                <button @click="todo.completeTodo">
                     <PhCheckCircle size="24" class="transition-all delay-100 hover:text-green-500"/>
                 </button>
 
-                <button>
+                <button @click="todo.addTodo()" v-if="!todo.editingId">
+                    <PhFloppyDisk size="24" class="transition-all delay-100 hover:text-blue-500" />
+                </button>
+
+                <button @click="todo.updateTodo" v-if="todo.editingId">
                     <PhFloppyDisk size="24" class="transition-all delay-100 hover:text-blue-500" />
                 </button>
 
@@ -33,7 +37,10 @@
 <script setup>
 import { PhCheckCircle, PhCircle,  PhFloppyDisk, PhTrash, PhX } from '@phosphor-icons/vue';
 import { menuStore } from '../store/useMenuStore';
+import { useTodoStore } from '../store/useTodoStore';
 
 const menu = menuStore();
+const todo = useTodoStore();
+
 
 </script>
