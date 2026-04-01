@@ -48,8 +48,6 @@ let ocultarActions = ref(false);
 const handleResize = () => {
     ocultarActions.value = false;
     if (window.innerWidth < 768) {
-        console.log('mudar');
-        
         ocultarActions.value = true;
     }
 }
